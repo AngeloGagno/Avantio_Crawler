@@ -11,6 +11,7 @@ python-dotenv = "^1.0.1"
 pandas = "^2.2.3"
 sqlalchemy = "^2.0.38"
 psycopg-binary = "^3.2.5"
+selenium = "^4.29.0"
 
 
 [build-system]
