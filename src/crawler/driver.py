@@ -18,15 +18,3 @@ class Driver:
         return self.driver
     
 
-if __name__ == '__main__':
-    driver_instance = Driver().get_driver()
-    login_instance = Login(driver_instance)
-    accomodation_instance = Accommodation_info(driver_instance)
-
-    login_instance.connecting_page()
-    login_instance.username()
-    login_instance.password()
-    time.sleep(2)
-    accomodation_instance.review_page(accommodation_id='407540')
-    time.sleep(10)
-    print(accomodation_instance.summarized_accommodation())
