@@ -10,11 +10,10 @@ class Accommodation_info:
         self.driver.get(f'https://app.pineapples.com.br/channelmanager/accommodations/bk_airbnb?reference={accommodation_id}&detail={accommodation_id}')
 
     def active(self):
-        banned = self.driver.find_elements(By.CLASS_NAME,'channel__accommodations__detail__alerts__item__title')
-        if banned:
-            return banned[0].text
-        
-        else: return 'Active'
+        activated = self.driver.find_element(By.ID, 'connect').is_selected()
+        if activated == True:
+            return True
+        else: False
 
     def review(self):
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'channel__accommodations__detail__header__title')))
@@ -28,12 +27,10 @@ class Accommodation_info:
         time.sleep(5)
         perfil = self.driver.find_elements(By.CLASS_NAME,'cmpro-data-preview-item-value')
         if perfil:
-            return self.driver.find_element(By.CLASS_NAME,'cmpro-data-preview-item-value').text ,self.driver.find_element(By.CLASS_NAME,'see-announcements__link').text
+            return self.driver.find_element(By.CLASS_NAME,'cmpro-data-preview-item-value').text ,self.driver.find_element(By.LINK_TEXT, 'Ver anúncio').get_attribute('href')
         
     def summarized_accommodation(self):
-        if self.active() == 'Active':
-            
-            
-            return self.review(),self.account_perfil(),self.active()
-
-        else: return self.active()
+        if self.active() == True :
+            perfil,link = self.account_perfil()
+            return {'Reviews':self.review(),'Perfil':perfil,'Link':link,'Status':self.active()}
+        else: return {'Reviews':None,'Perfil':None,'Link':None,'Status':self.active()}
