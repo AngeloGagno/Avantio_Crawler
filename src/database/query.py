@@ -1,4 +1,4 @@
-from connect import Connection
+from database.connect import Connection
 import pandas as pd
 
 def query():
