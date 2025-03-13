@@ -1,7 +1,3 @@
-Claro! Aqui vai um exemplo de `README.md` detalhado para o seu projeto, com base nas informações que você forneceu:
-
----
-
 # Avantio Accommodation Scraper
 
 Este projeto realiza **web scraping** na **página de reservas da Avantio (PMS)** para coletar informações relevantes sobre as propriedades cadastradas. O sistema automatiza o acesso e a extrai os dados de cada acomodação contida no banco de dados.
