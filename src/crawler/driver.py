@@ -5,7 +5,7 @@ from crawler.review_page.airbnb import Accommodation_info
 
 class Driver:
     def __init__(self):
-        
+        """Instancia o driver do selenium passando suas configurações"""
         options = Options()
         options.add_argument("--headless")  # Roda sem abrir o navegador (modo invisível)
         options.add_argument("--disable-gpu")  # Para sistemas Windows
@@ -16,4 +16,5 @@ class Driver:
         self.driver = webdriver.Chrome(options=options)
 
     def get_driver(self):
+        """Getter para chamar o driver"""
         return self.driver
