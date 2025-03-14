@@ -9,7 +9,10 @@ class Login:
         """Instancia a classe para realizar o login no site da avantio"""
         load_dotenv(override=True)
         self.driver = driver
-
+        self.connect = self.connecting_page()
+        self.user = self.username()
+        self.password = self.password()
+        
     def connecting_page(self):
         """Acessa a pagina da pineapples"""
         self.driver.get('https://app.pineapples.com.br/')
@@ -29,6 +32,6 @@ class Login:
         WebDriverWait(self.driver, 20).until(EC.url_changes("https://app.pineapples.com.br"))  
     
     
-    
+
 
 
