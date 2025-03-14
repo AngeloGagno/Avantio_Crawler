@@ -3,9 +3,8 @@ import os
 from dotenv import load_dotenv
 
 class Connection:
-    
+    """Cria uma conexão com o banco de dados"""
     def __init__(self):
-        """Cria uma conexão com o banco de dados em questão"""
         self.con_string = self.get_connection_string()
         self.engine = self.create_engine() 
 
