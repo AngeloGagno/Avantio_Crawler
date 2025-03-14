@@ -6,7 +6,7 @@ Este projeto realiza **web scraping** na **página de reservas da Avantio (PMS)*
 
 ## Funcionalidades
 
-- Login automático na plataforma **Avantio PMS**.
+- Login automático na plataforma **Avantio PMS** com resolução de autenticação de dois fatores.
 - Navegação para a página de cada propriedade.
 - Coleta de dados diretamente da página de avaliações.
 - Exportação dos dados coletados para uma planilha **Excel**.
@@ -14,9 +14,9 @@ Este projeto realiza **web scraping** na **página de reservas da Avantio (PMS)*
 As informações obtidas incluem:
 
 - **Nome da acomodação**
-- **Avaliação no Airbnb**
-- **Link da acomodação no Airbnb**  
-- **Perfil da acomodação no Airbnb**  
+- **Avaliação no Portal desejado**
+- **Link da acomodação**  
+- **Perfil da acomodação**  
 - **Status (ativo ou não)**  
 
 ---
@@ -28,7 +28,8 @@ src/
 ├── crawler/
 │   ├── driver.py              # Instancia o driver Selenium
 │   ├── login/
-│   │   └── frontpage.py       # Realiza o login no site Avantio
+│   │   ├── frontpage.py       # Realiza o login no site Avantio
+│   │   └── twoFA.py           # Verifica a necessidade e fornece autenticação de 2 fatores
 │   └── review_page/
 │       └── airbnb.py          # Acessa e coleta informações da página de avaliações no Airbnb
 ├── database/
@@ -54,11 +55,12 @@ src/
 ## Tecnologias Utilizadas
 
 - **Python 3.10+**
+- **Poetry** (para gerenciamento de dependências e ambientes virtuais)
 - **Selenium**  
 - **Pandas**  
 - **SqlAlchemy**
 - **PostgreSQL**
-- **Poetry** (para gerenciamento de dependências e ambientes virtuais)
+- **Pyotp**
 
 ---
 
