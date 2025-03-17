@@ -10,7 +10,7 @@ def dataframe(accomodation_instance:AccommodationInfo,portal:str) -> list:
     """Instancia o acesso a pagina de cada propriedade e verifica seus status de acordo com a classe Accommodation_info"""
     data = []
     df = query()
-    for accommodation in range(183,len(df)):
+    for accommodation in range(0,len(df)):
         id_accommodation = df.loc[accommodation,'id_acc']
         accomodation_instance.review_page(id_accommodation,portal=portal)
         time.sleep(5)
