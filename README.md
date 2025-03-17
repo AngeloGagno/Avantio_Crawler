@@ -35,6 +35,8 @@ src/
 ├── database/
 │   ├── connect.py             # Cria coneção com banco de dados
 │   └── query.py               # Realiza queries no banco de dados e retorna os IDs das acomodações
+├── logs/
+│   └── log.py                 # Instancia os logs de Erro caso ocorra
 ├── execute_crawler.py         # Cria o processo de execução do Crawler
 └── main.py                    # Ponto de entrada da aplicação
 ```
@@ -62,7 +64,7 @@ src/
 - **SqlAlchemy**
 - **PostgreSQL**
 - **Pyotp**
-
+- **Loguru**
 ---
 
 ## Pré-requisitos
@@ -127,6 +129,9 @@ Navega até a página de avaliações da **Avantio** e coleta as informações n
 
 Faz a **consulta no banco de dados** para buscar os IDs das acomodações a serem verificadas.
 
+### `logs/log.py`
+
+Cria **logs de Erro** caso não encontre a propriedade, caso haja qualquer problema de conexão com o banco ou alteração na interface do sistema.
 ---
 ## Contato
 
