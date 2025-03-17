@@ -2,21 +2,21 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-import time
+from crawler.driver import Driver
 
 class AccommodationInfo:
-    def __init__(self, driver):
+    def __init__(self, driver:Driver):
         """Instancia o driver fornecido pelo usuário."""
         self.driver = driver
 
-    def review_page(self, accommodation_id, portal):
+    def review_page(self, accommodation_id:str, portal:str) -> None:
         """Acessa a página de propriedades que contém os reviews e apartamentos ativos no portal selecionado."""
         url = (
             f'https://app.pineapples.com.br/channelmanager/accommodations/bk_{portal}'
             f'?reference={accommodation_id}&detail={accommodation_id}'
         )
         self.driver.get(url)
-
+        
     def accommodation_name(self):
         """Retorna o nome da acomodação, ou 'Not Found' caso não seja encontrada."""
         try:
@@ -82,7 +82,7 @@ class AccommodationInfo:
         except (NoSuchElementException, TimeoutException):
             return None
 
-    def summarized_accommodation(self) -> dict:
+    def summarized_accommodation(self,accommodation_id:str) -> dict:
         """
         Resumo com informações da acomodação:
         - Se ativa, tenta buscar perfil e link.
@@ -92,7 +92,7 @@ class AccommodationInfo:
         active_status = self.active()
         reviews_count = self.review()
 
-        result = {
+        result = {'Accommodation_id':accommodation_id,
             'Accommodation_name': name,
             'Reviews': reviews_count,
             'Perfil': None,
