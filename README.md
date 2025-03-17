@@ -42,7 +42,7 @@ src/
 
 ##  Como Funciona
 
-1. O script realiza **login automático** no site **Avantio PMS** usando **Selenium**.
+1. O script realiza **login automático** e realizando a **Autenticação de 2 Fatores** no site **Avantio PMS** usando **Selenium**.
 2. Consulta o banco de dados para obter a lista de **IDs de acomodações** a serem verificadas.
 3. Para cada ID:
    - Acessa a página da acomodação.
@@ -108,6 +108,10 @@ Instancia e configura o **Selenium WebDriver**.
 
 ### `crawler/login/frontpage.py`
 
+Fornece o código de **dois fatores** e realiza a inserção caso necessario.
+
+### `crawler/login/twoFA.py`
+
 Automatiza o **login no site da Avantio**.
 
 ### `crawler/review_page/airbnb.py`
@@ -117,11 +121,6 @@ Navega até a página de avaliações da **Avantio** e coleta as informações n
 ### `database/query.py`
 
 Faz a **consulta no banco de dados** para buscar os IDs das acomodações a serem verificadas.
-
-## Contribuição
-
-Contribuições são bem-vindas!  
-Sinta-se à vontade para abrir uma **issue** ou um **pull request**.
 
 ---
 ## Contato
