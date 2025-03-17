@@ -35,6 +35,7 @@ src/
 ├── database/
 │   ├── connect.py             # Cria coneção com banco de dados
 │   └── query.py               # Realiza queries no banco de dados e retorna os IDs das acomodações
+├── execute_crawler.py         # Cria o processo de execução do Crawler
 └── main.py                    # Ponto de entrada da aplicação
 ```
 
@@ -100,7 +101,11 @@ O arquivo `accommodations.xlsx` será gerado no diretório raiz com as informaç
 
 ### `main.py`
 
-Ponto de entrada. Faz o login, coleta as informações de cada acomodação e gera a planilha Excel.
+Faz o login, coleta as informações de cada acomodação e gera a planilha Excel.
+
+### `execute_crawler.py`
+
+Cria todo o padrão de execução do **Crawler**
 
 ### `crawler/driver.py`
 
