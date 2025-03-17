@@ -2,13 +2,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from logs.log import LoggerService
 from crawler.driver import Driver
 
 class AccommodationInfo:
     def __init__(self, driver:Driver):
         """Instancia o driver fornecido pelo usuário."""
         self.driver = driver
-
+        self.log = LoggerService()
     def review_page(self, accommodation_id:str, portal:str) -> None:
         """Acessa a página de propriedades que contém os reviews e apartamentos ativos no portal selecionado."""
         url = (
@@ -82,17 +83,24 @@ class AccommodationInfo:
         except (NoSuchElementException, TimeoutException):
             return None
 
-    def summarized_accommodation(self,accommodation_id:str) -> dict:
+    def summarized_accommodation(self, accommodation_id: str) -> dict:
         """
         Resumo com informações da acomodação:
         - Se ativa, tenta buscar perfil e link.
         - Se não ativa, envia status e reviews.
         """
         name = self.accommodation_name()
+        if name == 'Not Found':
+            self.log.error(f"[{accommodation_id}] Nome da acomodação não encontrado.")
+
         active_status = self.active()
+        if active_status == 'Not Found':
+            self.log.error(f"[{accommodation_id}] Status de ativação não encontrado.")
+
         reviews_count = self.review()
 
-        result = {'Accommodation_id':accommodation_id,
+        result = {
+            'Accommodation_id': accommodation_id,
             'Accommodation_name': name,
             'Reviews': reviews_count,
             'Perfil': None,
@@ -102,7 +110,9 @@ class AccommodationInfo:
 
         if active_status is True:
             profile_data = self.account_profile()
-            if profile_data:
+            if not profile_data:
+                self.log.warning(f"[{accommodation_id}] Perfil e link não encontrados para acomodação ativa.")
+            else:
                 perfil, link = profile_data
                 result['Perfil'] = perfil
                 result['Link'] = link

@@ -14,11 +14,10 @@ class TwoFactorAuthenticator:
 
     def authenticator_number(self):
         if not self.secret_key:
-            raise ValueError("Secret key não encontrada nas variáveis de ambiente!")
+            raise ValueError("Secret key não encontrada nas variáveis de ambiente!") 
         
         totp = pyotp.TOTP(self.secret_key)
         code = totp.now()
-        print(f"Código 2FA gerado: {code}") 
         return code
 
     def check_page(self):
