@@ -3,10 +3,11 @@ from dotenv import load_dotenv
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from crawler.driver import Driver
 import os
 
 class TwoFactorAuthenticator:
-    def __init__(self, driver):
+    def __init__(self, driver:Driver):
         self.driver = driver
         load_dotenv(override=True)
         self.secret_key = os.getenv('AuthKey')

@@ -1,11 +1,12 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from crawler.driver import Driver
 from dotenv import load_dotenv
 import os
 
 class Login:
-    def __init__(self, driver):
+    def __init__(self, driver:Driver):
         """Instancia a classe para realizar o login no site da avantio"""
         load_dotenv(override=True)
         self.driver = driver
