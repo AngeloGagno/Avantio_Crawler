@@ -3,6 +3,7 @@ import os
 load_dotenv(override=True)
 
 def create_credentials():
+    #Cria o dicionario do arquivo credenciais do google sheets api
     return {"installed":{"client_id":os.getenv("CLIENT_ID"),
                   "project_id":os.getenv("PROJECT_ID"),
                   "auth_uri":"https://accounts.google.com/o/oauth2/auth",
@@ -11,6 +12,7 @@ def create_credentials():
                   "client_secret":os.getenv("REDIRECT_URIS"),"redirect_uris":["http://localhost"]}}
 
 def create_token():
+    #Cria o dicionario do arquivo token do google sheets api
     return {"token":os.getenv('ACCESS_TOKEN'), 
         "refresh_token":os.getenv('REFRESH_TOKEN'), 
         "token_uri": "https://oauth2.googleapis.com/token", 
