@@ -21,7 +21,7 @@ class AccommodationInfo:
     def accommodation_name(self):
         """Retorna o nome da acomodação, ou 'Not Found' caso não seja encontrada."""
         try:
-            element = WebDriverWait(self.driver, 5).until(
+            element = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'channel__accommodations__detail__header__title'))
             )
             return element.text
@@ -36,7 +36,7 @@ class AccommodationInfo:
         - Retorna 'Not Found' se a acomodação não existir.
         """
         try:
-            WebDriverWait(self.driver, 5).until(
+            WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'channel__accommodations__detail__header__title'))
             )
             scores = self.driver.find_elements(By.CLASS_NAME, 'accommodations-scores-preview__score')
@@ -60,7 +60,7 @@ class AccommodationInfo:
             )
             activated = self.driver.find_element(By.ID, 'connect').is_selected()
             return activated
-        except (NoSuchElementException, TimeoutException):
+        except:
             return 'Not Found'
 
     def account_profile(self):
@@ -70,7 +70,7 @@ class AccommodationInfo:
         - Retorna None se não encontrar.
         """
         try:
-            WebDriverWait(self.driver, 5).until(
+            WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, 'cmpro-data-preview-item-value'))
             )
             perfil_element = self.driver.find_element(By.CLASS_NAME, 'cmpro-data-preview-item-value')
@@ -91,11 +91,11 @@ class AccommodationInfo:
         """
         name = self.accommodation_name()
         if name == 'Not Found':
-            self.log.error(f"[{accommodation_id}] Nome da acomodação não encontrado.")
+            self.log.warning(f"[{accommodation_id}] Nome da acomodação não encontrado.")
 
         active_status = self.active()
         if active_status == 'Not Found':
-            self.log.error(f"[{accommodation_id}] Status de ativação não encontrado.")
+            self.log.warning(f"[{accommodation_id}] Status de ativação não encontrado.")
 
         reviews_count = self.review()
 
