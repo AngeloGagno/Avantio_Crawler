@@ -13,7 +13,7 @@ def dataframe(accomodation_instance:AccommodationInfo,portal:str) -> list:
     for accommodation in range(0,len(df)):
         id_accommodation = df.loc[accommodation,'id_acc']
         accomodation_instance.review_page(id_accommodation,portal=portal)
-        time.sleep(5)
+        time.sleep(6)
         data.append(accomodation_instance.summarized_accommodation(accommodation_id=id_accommodation))
         time.sleep(5)
     return data
@@ -33,6 +33,12 @@ def set_portal() -> str:
     parser.add_argument('--portal',type=str,help='Digite o portal desejado(airbnb ou bookingcom)',default='airbnb')
     args = parser.parse_args()
     return args.portal  
+
+def cleaning_portal():
+    portal = set_portal()
+    if portal == 'bookingcom':
+        return portal.replace('com','').lower()
+    return portal.lower()
 
 def fetch_all() -> list:
     """Faz o login na avantio e verifica o acesso a pagina de cada propriedade,
